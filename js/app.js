@@ -36,7 +36,7 @@ function leerDatosCurso(curso) {
     const infoCurso = {
         imagen: curso.querySelector('img').src,
         titulo: curso.querySelector('h4').textContent,
-        precio: curso.querySelector('.precio').textContent,
+        precio: curso.querySelector('p span').textContent,
         id: curso.querySelector('a').getAttribute('data-id'),
         cantidad: 1
     }
@@ -56,10 +56,15 @@ function carritoHTML() {
     // Recorrer el carrtito y generar el HTML 
     articulosCarrito.forEach( curso => {
         const row = document.createElement('tr');
+        const { imagen, titulo, precio, cantidad, id } = curso;
         row.innerHTML = `
             <td>
-                ${curso.titulo}
+                <img src="${imagen}" widht="100">
             </td>
+            <td>${titulo}</td>
+            <td>${precio}</td>
+            <td>${cantidad}</td>
+            <td><a href="#" class="borrar-curso" data-id="${id}"> X </a></td>
         `;
 
         contenedorCarrito.appendChild(row);
